@@ -30,7 +30,7 @@ html{scrollbar-color:var(--zari) var(--bg);caret-color:var(--zari)}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 12px)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 body{background:var(--bg);color:var(--fg);font:500 16px/1.6 var(--sans);margin:0;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,p,ul,ol,figure,dl,dd{margin:0}
 ul,ol{padding:0;list-style:none}
@@ -97,7 +97,6 @@ img{max-width:100%;display:block}
 .hero-text{position:relative;z-index:2;padding-top:clamp(24px,4vw,44px)}
 .film{position:absolute;inset:0;z-index:1;background:var(--band);clip-path:inset(60% 16px 24px 16px)}
 .film video{width:100%;height:100%;object-fit:cover;display:block}
-@media (prefers-reduced-motion:reduce){.hero{height:auto}.hero-pin{position:relative;top:0;height:auto}.film{position:relative;clip-path:none;aspect-ratio:16/9;margin-top:32px}}
 .wordmark{font-family:var(--display);font-weight:400;line-height:.8;letter-spacing:.04em;text-align:center;font-size:clamp(64px,17.5vw,250px);padding-left:.06em;margin:0}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(28px,4vw,48px)}
 .creds{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:18px;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
@@ -134,7 +133,6 @@ img{max-width:100%;display:block}
 .scene-v .c4{left:var(--gut);bottom:7%;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--band-muted);display:flex;gap:14px;align-items:center}
 .scene-v .c4::before{content:"";width:60px;height:1px;background:var(--zari-hi)}
 @media (max-width:820px){.scene-v .c1{top:9%;max-width:84vw}.scene-v .c2{top:46%;right:var(--gutR)}.scene-v .c3{top:66%;right:var(--gutR)}}
-@media (prefers-reduced-motion:reduce){.scene{height:auto!important}.scene-pin{position:relative;top:0;height:auto;min-height:80svh;padding:clamp(48px,8vw,96px) 0}.cluster{position:relative!important;opacity:1;transform:none;inset:auto!important;margin:16px var(--gut)}}
 .promise{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:-.01em;font-size:clamp(38px,5.4vw,76px);text-align:right;text-wrap:balance}
 
 /* signature pieces: explorer (static for now) + edits */
@@ -157,7 +155,7 @@ img{max-width:100%;display:block}
 .scene-d .cue::after{content:"";width:1px;height:38px;background:var(--band-muted);animation:cue 1.8s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
 @media (max-width:820px){.scene-d .head{top:9%;max-width:84vw}.scene-d .card{bottom:12%}.scene-d .rail{display:none}.scene-d .cue{display:none}}
-@media (prefers-reduced-motion:reduce){.scene-d .card{width:auto;margin-top:12px}.scene-d .rail,.scene-d .bar,.scene-d .cue{display:none}}
+@media (prefers-reduced-motion:reduce){.scene-d .cue{display:none}}
 .explorer{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);margin-top:clamp(32px,4vw,56px);align-items:start}
 .garment{position:relative;aspect-ratio:3/4.4}
 .spot{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--surface);color:var(--fg);border:1px solid var(--fg);display:grid;place-items:center;font:800 12px/1 var(--sans);text-decoration:none;transform:translate(-50%,-50%);transition:background .2s,color .2s}
@@ -201,7 +199,7 @@ img{max-width:100%;display:block}
 .stamp text{font:800 11.5px var(--sans);letter-spacing:.32em;text-transform:uppercase;fill:var(--zari)}
 .stamp circle{fill:none;stroke:var(--zari);stroke-width:1}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.stamp{animation:none}}
+@media (prefers-reduced-motion:reduce){.map .pulse{display:none}}
 
 /* network */
 .net-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px}
@@ -287,7 +285,6 @@ img{max-width:100%;display:block}
 .tcount{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:clamp(20px,3vw,40px);border-top:1px solid var(--fg);padding-top:16px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
 .tcount b{font-family:var(--display);font-weight:400;font-size:28px;letter-spacing:.04em;color:var(--zari)}
 @media (max-width:820px){.thread{--spine:12px;--swing:0px;--lift:0px}.tstep{grid-template-columns:1fr;padding:14px 0}.tstep:nth-child(odd) .side,.tstep:nth-child(even) .side{grid-column:1;padding:0 0 0 40px;grid-template-columns:110px minmax(0,1fr);text-align:left}.tstep:nth-child(odd) .side .ph{order:0}.tstep:nth-child(odd) .top{flex-direction:row}.tstep:nth-child(odd) .txt{justify-items:start}.tstep .ghost{display:none}.tstep .node{top:calc(14px + 20px)}}
-@media (prefers-reduced-motion:reduce){.tstep .ph{clip-path:none;opacity:1}.tstep .txt{opacity:1;transform:none}.tstep .num{color:var(--zari)}.thread .gold{stroke-dashoffset:0!important}}
 
 /* final check */
 .fc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
@@ -303,7 +300,6 @@ img{max-width:100%;display:block}
 .scard .h2{font-size:clamp(30px,3.6vw,52px)}
 .scard .body{margin-top:12px;max-width:40ch}
 @media (max-width:820px){.scard{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;height:min(76vh,680px)}.scard .num{font-size:52px}.scard .h2{font-size:28px}.scard .txt{padding:18px 20px 22px;gap:10px}}
-@media (prefers-reduced-motion:reduce){.scard{position:relative;top:0;margin-bottom:16px;transform:none!important;filter:none!important}}
 .promise-line{text-align:center;font-family:var(--display);text-transform:uppercase;font-size:clamp(26px,3.4vw,48px);line-height:1.05;font-weight:400;border-top:1px solid var(--fg);padding-top:24px;margin-top:clamp(40px,5vw,72px);text-wrap:balance}
 
 /* private label */
@@ -759,9 +755,26 @@ img{max-width:100%;display:block}
   var hero=$("hero"),pin=$("heroPin"),film=$("film"),txt=$("heroText"),hv=$("heroVid"),
       reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,q=false;
   var clamp=function(x){return Math.max(0,Math.min(1,x))},ease=function(t){return 1-Math.pow(1-t,3)};
-  hv.src="clips/clip2.mp4";hv.addEventListener("loadeddata",tick);
+  hv.src="clips/clip2.mp4";prime(hv);
+  /* Safari and iOS only paint a frame once the element has decoded one, so nudge each film
+     into playing while muted and pause it straight away. Seeks then render as you scroll. */
+  function prime(v){
+    v.addEventListener("loadeddata",rq);
+    var go=function(){var pr=v.play();if(pr&&pr.then)pr.then(function(){v.pause();v.currentTime=v.currentTime;rq()},function(){});else{try{v.pause()}catch(e){}}};
+    if(v.readyState>0)go();else v.addEventListener("loadedmetadata",go,{once:true});
+    ["pointerdown","touchstart","wheel","keydown"].forEach(function(ev){addEventListener(ev,go,{once:true,passive:true})});
+  }
+  /* don't seek past what has downloaded: a seek into an empty range stalls the picture */
+  function seek(v,t){
+    if(!v.duration||!isFinite(v.duration))return;
+    var b=v.buffered,lim=0;
+    for(var i=0;i<b.length;i++){if(b.start(i)<=t&&t<=b.end(i)){lim=t;break}if(b.start(i)<=v.currentTime)lim=Math.max(lim,b.end(i)-.05)}
+    if(!b.length)lim=t;
+    var want=Math.min(t,lim||t);
+    if(Math.abs(v.currentTime-want)>.03){if(v.fastSeek)try{v.fastSeek(want)}catch(e){v.currentTime=want}else v.currentTime=want}
+  }
   function tick(){
-    q=false;if(reduce)return;
+    q=false;
     var r=hero.getBoundingClientRect(),ph=pin.offsetHeight,p=clamp(-r.top/Math.max(r.height-ph,1));
     var wr=txt.getBoundingClientRect(),pr=pin.getBoundingClientRect(),
         side=parseFloat(getComputedStyle(txt).paddingLeft)+Math.max(0,(pr.width-txt.offsetWidth)/2),
@@ -769,30 +782,29 @@ img{max-width:100%;display:block}
     var k=ease(clamp(p/.3)),f=1-k;
     film.style.clipPath="inset("+(top*f).toFixed(1)+"px "+(side*f).toFixed(1)+"px "+(bot*f).toFixed(1)+"px "+(side*f).toFixed(1)+"px)";
     txt.style.opacity=(1-clamp(p/.2)).toFixed(3);txt.style.visibility=p>.21?"hidden":"visible";
-    if(hv.duration){var t=clamp((p-.28)/.72)*(hv.duration-.05);if(Math.abs(hv.currentTime-t)>.03)hv.currentTime=t}
+    if(hv.duration)seek(hv,clamp((p-.28)/.72)*(hv.duration-.05));
   }
   /* A2 + positioning: pinned film scenes. Each text cluster rises in between data-in and data-out
      and, if it has data-exit, leaves again after it. The film time follows the scroll. */
   var scenes=[].slice.call(document.querySelectorAll(".scene")).map(function(sec){
-    var v=sec.querySelector("video");v.src=v.dataset.src;v.addEventListener("loadeddata",rq);
+    var v=sec.querySelector("video");v.src=v.dataset.src;prime(v);
     return {sec:sec,pin:sec.querySelector(".scene-pin"),v:v,cl:[].slice.call(sec.querySelectorAll(".cluster")).map(function(c){return {el:c,a:+c.dataset.in,b:+c.dataset.out,x:c.dataset.exit?+c.dataset.exit:null}}),
       rail:[].slice.call(sec.querySelectorAll(".rail i")),bar:sec.querySelector(".bar"),cue:sec.querySelector(".cue")};
   });
   function sceneTick(){
-    if(reduce)return;
     scenes.forEach(function(S){
       var r=S.sec.getBoundingClientRect(),ph=S.pin.offsetHeight;
       if(r.bottom<0||r.top>innerHeight)return;
       var p=clamp(-r.top/Math.max(r.height-ph,1));
-      if(S.v.duration){var t=clamp((p-.02)/.96)*(S.v.duration-.05);if(Math.abs(S.v.currentTime-t)>.03)S.v.currentTime=t}
+      if(S.v.duration)seek(S.v,clamp((p-.02)/.96)*(S.v.duration-.05));
       S.cl.forEach(function(c){
         var k=ease(clamp((p-c.a)/Math.max(c.b-c.a,.001)));
         if(c.x!==null&&p>c.b){k*=1-ease(clamp((p-c.x)/.05))}
-        c.el.style.opacity=k.toFixed(3);c.el.style.transform="translateY("+((1-k)*36).toFixed(1)+"px)";c.el.style.visibility=k>0?"visible":"hidden";
+        c.el.style.opacity=k.toFixed(3);c.el.style.transform=reduce?"none":"translateY("+((1-k)*36).toFixed(1)+"px)";c.el.style.visibility=k>0?"visible":"hidden";
       });
       if(S.rail.length){var on=p<.2?-1:Math.min(3,Math.floor((p-.2)/.2));S.rail.forEach(function(i,n){i.classList.toggle("on",n===on)})}
       if(S.bar)S.bar.style.width=(p*100).toFixed(2)+"%";
-      if(S.cue){var ck=ease(clamp((p-.02)/.05))*(1-ease(clamp((p-.15)/.05)));S.cue.style.opacity=ck.toFixed(3);S.cue.style.transform="translateY("+((1-ck)*20).toFixed(1)+"px)"}
+      if(S.cue){var ck=ease(clamp((p-.02)/.05))*(1-ease(clamp((p-.15)/.05)));S.cue.style.opacity=ck.toFixed(3);S.cue.style.transform=reduce?"none":"translateY("+((1-ck)*20).toFixed(1)+"px)"}
     });
   }
   /* A4 the thread: a gold line draws itself through the eight stages as you scroll */
@@ -811,7 +823,7 @@ img{max-width:100%;display:block}
     if(!tlen)return;
     var tr=thread.getBoundingClientRect(),lineY=innerHeight*.72-tr.top;
     var L;if(lineY<=0)L=0;else if(lineY>=thread.offsetHeight)L=tlen;else{var lo=0,hi=tlen;for(var i=0;i<18;i++){var m=(lo+hi)/2;if(tgold.getPointAtLength(m).y<lineY)lo=m;else hi=m}L=lo}
-    if(!reduce)tgold.style.strokeDashoffset=(tlen-L).toFixed(1);
+    tgold.style.strokeDashoffset=(tlen-L).toFixed(1);
     var n=0;tsteps.forEach(function(st,i){var on=lineY>=tnodes[i];st.classList.toggle("done",on);if(on)n++});
     tdone.textContent=("0"+n).slice(-2)+" / 08";
   }
@@ -819,7 +831,6 @@ img{max-width:100%;display:block}
   /* final check: cards stack. As the next card rides up over this one, this one eases back and dims a touch */
   var scards=[].slice.call(document.querySelectorAll(".scard"));
   function stackTick(){
-    if(reduce)return;
     for(var i=0;i<scards.length-1;i++){
       var a=scards[i].getBoundingClientRect(),b=scards[i+1].getBoundingClientRect();
       var k=clamp(1-(b.top-a.top)/Math.max(a.height,1));
