@@ -764,15 +764,13 @@ img{max-width:100%;display:block}
     if(v.readyState>0)go();else v.addEventListener("loadedmetadata",go,{once:true});
     ["pointerdown","touchstart","wheel","keydown"].forEach(function(ev){addEventListener(ev,go,{once:true,passive:true})});
   }
-  /* don't seek past what has downloaded: a seek into an empty range stalls the picture */
   function seek(v,t){
     if(!v.duration||!isFinite(v.duration))return;
-    var b=v.buffered,lim=0;
-    for(var i=0;i<b.length;i++){if(b.start(i)<=t&&t<=b.end(i)){lim=t;break}if(b.start(i)<=v.currentTime)lim=Math.max(lim,b.end(i)-.05)}
-    if(!b.length)lim=t;
-    var want=Math.min(t,lim||t);
-    if(Math.abs(v.currentTime-want)>.03){if(v.fastSeek)try{v.fastSeek(want)}catch(e){v.currentTime=want}else v.currentTime=want}
+    if(Math.abs(v.currentTime-t)>.03)v.currentTime=t;
   }
+  /* one film at a time: the hero starts at once, the others only as they come within reach,
+     so the first film has the whole connection to itself */
+  function load(v){if(v.dataset.src&&!v.src){v.src=v.dataset.src;prime(v)}}
   function tick(){
     q=false;
     var r=hero.getBoundingClientRect(),ph=pin.offsetHeight,p=clamp(-r.top/Math.max(r.height-ph,1));
@@ -787,13 +785,14 @@ img{max-width:100%;display:block}
   /* A2 + positioning: pinned film scenes. Each text cluster rises in between data-in and data-out
      and, if it has data-exit, leaves again after it. The film time follows the scroll. */
   var scenes=[].slice.call(document.querySelectorAll(".scene")).map(function(sec){
-    var v=sec.querySelector("video");v.src=v.dataset.src;prime(v);
+    var v=sec.querySelector("video");
     return {sec:sec,pin:sec.querySelector(".scene-pin"),v:v,cl:[].slice.call(sec.querySelectorAll(".cluster")).map(function(c){return {el:c,a:+c.dataset.in,b:+c.dataset.out,x:c.dataset.exit?+c.dataset.exit:null}}),
       rail:[].slice.call(sec.querySelectorAll(".rail i")),bar:sec.querySelector(".bar"),cue:sec.querySelector(".cue")};
   });
   function sceneTick(){
     scenes.forEach(function(S){
       var r=S.sec.getBoundingClientRect(),ph=S.pin.offsetHeight;
+      if(r.top<innerHeight*2.5&&r.bottom>-innerHeight)load(S.v);
       if(r.bottom<0||r.top>innerHeight)return;
       var p=clamp(-r.top/Math.max(r.height-ph,1));
       if(S.v.duration)seek(S.v,clamp((p-.02)/.96)*(S.v.duration-.05));
