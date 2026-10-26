@@ -408,12 +408,71 @@ img{max-width:100%;display:block}
 .js-motion .pv.px.in::before{--ps:1}
 .drift{translate:0 var(--dy,0px)}
 @media (prefers-reduced-motion:reduce){.px::before{translate:none;scale:none}.drift{translate:none}}
+
+/* ---------- life layer: magnetic buttons, staggered scroll, controlled parallax, easter eggs ---------- */
+/* a gold thread sews across the top of the screen as you read */
+.sprog{position:fixed;left:0;top:0;width:100%;height:2px;z-index:60;pointer-events:none;transform-origin:0 50%;transform:scaleX(var(--sp,0));background:linear-gradient(90deg,var(--zari),var(--zari-hi))}
+/* running-stitch dividers that sew themselves in above a section */
+.stitch>.wrap{position:relative}
+.stitch>.wrap::before{content:"";position:absolute;left:var(--gut);right:var(--gutR);top:calc(clamp(64px,9vw,120px) * -.5);height:1px;background:repeating-linear-gradient(90deg,var(--zari) 0 9px,transparent 9px 16px);opacity:.7}
+.js-motion .stitch>.wrap::before{clip-path:inset(0 100% 0 0);transition:clip-path 1.9s cubic-bezier(.7,0,.2,1)}
+.js-motion .stitch.sewn>.wrap::before{clip-path:inset(0)}
+/* stitched frame: a dashed zari line runs round a photo after it unrolls */
+.sew::after{content:"";position:absolute;inset:12px;border:1px dashed color-mix(in srgb,var(--zari-hi) 85%,transparent);pointer-events:none;z-index:1}
+.js-motion .sew::after{clip-path:inset(0 100% 100% 0);transition:clip-path 2.2s cubic-bezier(.7,0,.2,1) .8s}
+.js-motion .sew.in::after{clip-path:inset(0)}
+/* staggered scroll: items in a row travel at slightly different speeds */
+.stg{translate:0 var(--sy,0px)}
+/* the creds strip becomes a slow marquee that quickens when you scroll */
+.creds.mq{display:block;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 48s linear infinite}
+.mq-set{display:flex}
+.creds.mq .mq-set span{display:flex;align-items:center;gap:14px;padding-right:46px;white-space:nowrap}
+.creds.mq .mq-set span::before{content:"";display:block;width:5px;height:5px;background:var(--zari);transform:rotate(45deg)}
+@keyframes mq{to{transform:translate3d(-50%,0,0)}}
+/* magnetic buttons, with a soft light that follows the pointer */
+.btn.mag{transition:translate .5s cubic-bezier(.2,.8,.2,1),transform .25s ease,background .25s ease,color .25s ease;translate:var(--mx,0px) var(--my,0px);overflow:hidden;isolation:isolate}
+.btn.mag:not(.float){position:relative}
+.btn.mag::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(140px circle at var(--hx,50%) var(--hy,50%),rgba(255,255,255,.24),transparent 62%);opacity:0;transition:opacity .35s}
+.btn.mag:hover::before{opacity:1}
+.mag:not(.btn){display:inline-block;transition:translate .5s cubic-bezier(.2,.8,.2,1),background .3s,color .3s,border-color .3s;translate:var(--mx,0px) var(--my,0px)}
+.mag .mg{display:inline-block;translate:var(--lx,0px) var(--ly,0px);transition:translate .45s cubic-bezier(.2,.8,.2,1)}
+.cats span{transition:background .3s,color .3s,border-color .3s}
+.cats span:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+/* hero wordmark: each letter lifts and catches the gold */
+.wordmark .wl{display:inline-block;transition:translate .7s cubic-bezier(.2,.8,.2,1),color .5s}
+@media (hover:hover){.wordmark .wl:hover{translate:0 -.07em;color:var(--zari)}}
+/* hover details */
+.edit .h3,.story .k{background:linear-gradient(var(--zari),var(--zari)) 0 100%/0 1px no-repeat;padding-bottom:5px;transition:background-size .6s cubic-bezier(.2,.8,.2,1)}
+.edit:hover .h3,.story:hover .k{background-size:100% 1px}
+.edit .num{transition:color .4s}.edit:hover .num{color:var(--zari)}
+.js-motion .edit:hover .ph.px.in::before,.js-motion .story:hover .ph.px.in::before,.js-motion .social .ph.px.in:hover::before{--ps:1.06}
+.offer li{position:relative}
+.offer li::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--zari);transform:scaleX(0);transform-origin:0 50%;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.offer li:hover::after{transform:scaleX(1)}
+.offer .num{transition:transform .35s cubic-bezier(.2,.8,.2,1),color .35s}.offer li:hover .num{color:var(--zari)}
+.foot ul a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:3px;transition:background-size .45s cubic-bezier(.2,.8,.2,1),color .3s}
+.foot ul a:hover{background-size:100% 1px}
+.fld label{transition:color .3s}.fld:focus-within label{color:var(--zari)}
+.house-art .year{pointer-events:auto;transition:opacity .6s,color .6s}
+.house-art .year:hover{opacity:.42;color:var(--zari)}
+.foot .logo{transition:rotate .8s cubic-bezier(.2,.8,.2,1)}
+.foot .logo:hover{rotate:-5deg}
+.js-life .market .stamp{animation:none}
+/* easter eggs */
+.egg-toast{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));translate:-50% 18px;opacity:0;z-index:70;background:var(--fg);color:var(--zari-hi);padding:14px 22px;border-radius:999px;font:800 12px/1.35 var(--sans);letter-spacing:.14em;text-transform:uppercase;pointer-events:none;text-align:center;max-width:calc(100vw - 32px);box-shadow:0 18px 44px rgba(14,10,11,.32);transition:opacity .45s,translate .6s cubic-bezier(.2,.8,.2,1)}
+.egg-toast.on{opacity:1;translate:-50% 0}
+.egg-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:65;pointer-events:none}
+.atelier main .ph{outline:1px dashed var(--zari-hi);outline-offset:-12px}
+.atelier .px::before{filter:sepia(.4) contrast(1.06) saturate(.9);transition:filter 1.2s,scale 1.8s}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.stg{translate:none}.btn.mag,.mag{translate:none}}
 </style>
 </head>
 <body>
 
 
 <div class="util"><div class="wrap"><span>Wholesale manufacturers &amp; exporters of premium Eastern wear</span><span class="r">Bulk orders &middot; Private label &middot; International dispatch</span></div></div>
+<div class="sprog" id="sprog" aria-hidden="true"></div>
 <header class="nav">
   <div class="wrap">
     <a class="lock" href="#top" aria-label="Varzan, wholesale manufacturer and exporter. Back to top"><span class="brand">VARZAN</span><span class="tag">Wholesale manufacturer &amp; exporter</span></a>
@@ -495,7 +554,7 @@ img{max-width:100%;display:block}
     <div class="bar" id="dbar" aria-hidden="true"></div>
   </div>
 </section>
-<section class="sec" id="edits">
+<section class="sec stitch" id="edits">
   <div class="wrap">
 
     <div class="edits">
@@ -573,7 +632,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- 08 The Process -->
-<section class="sec" id="process">
+<section class="sec stitch" id="process">
   <div class="wrap">
     <div class="sp-head"><div class="stack" style="gap:14px"><p class="eyebrow">The Process</p><h2 class="h2">From sketch to dispatch</h2></div></div>
     <div class="thread" id="thread"><svg class="tline" aria-hidden="true"><path class="guide" id="tguide" d=""/><path class="gold" id="tgold" d=""/></svg>
@@ -626,7 +685,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- 11 Journal -->
-<section class="sec" id="journal">
+<section class="sec stitch" id="journal">
   <div class="wrap">
     <div class="sp-head">
       <div class="stack" style="gap:14px"><p class="eyebrow">Journal</p><h2 class="h2">From the house</h2></div>
@@ -914,7 +973,7 @@ img{max-width:100%;display:block}
   function ok(el){return !el.closest(skip)}
   var pxs=[].slice.call(document.querySelectorAll("main [data-img]")).filter(ok);
   pxs.forEach(function(el){el.classList.add("px","pv")});
-  var drifts=[].slice.call(document.querySelectorAll(".house-art .year,.market .stamp,.pl .mark"));
+  var drifts=[].slice.call(document.querySelectorAll(".house-art .year,.pl .mark"));
   drifts.forEach(function(el){el.classList.add("drift")});
   if(!reduce&&"IntersectionObserver" in window){
     root.classList.add("js-motion");
@@ -934,19 +993,109 @@ img{max-width:100%;display:block}
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add("in");io.unobserve(t);if(t.classList.contains("rv"))setTimeout(function(){t.classList.remove("rv","in")},1900+parseFloat(t.style.getPropertyValue("--d")||0)*1000)}})},{rootMargin:"0px 0px -10% 0px"});
     [].slice.call(document.querySelectorAll(".rv,.hd,.pv")).forEach(function(el){io.observe(el)});
   }
-  function pxTick(){
-    if(reduce)return;
-    var H=innerHeight;
-    pxs.forEach(function(el){
-      var r=el.getBoundingClientRect();if(r.bottom<-80||r.top>H+80)return;
-      var n=Math.max(-1,Math.min(1,(r.top+r.height/2-H/2)/(H/2+r.height/2)));
-      el.style.setProperty("--py",(-n*r.height*.085).toFixed(1)+"px");
-    });
-    drifts.forEach(function(el){
-      var r=el.getBoundingClientRect();if(r.bottom<-200||r.top>H+200)return;
-      var n=(r.top+r.height/2-H/2)/H;el.style.setProperty("--dy",(n*-70).toFixed(1)+"px");
+  /* ---- life layer ---- */
+  var fine=matchMedia("(hover:hover) and (pointer:fine)").matches,prog=$("sprog");
+  if(!reduce)root.classList.add("js-life");
+  /* controlled parallax + staggered scroll. Every layer eases toward its target instead of
+     snapping to it, offsets are capped, and the row stagger switches off on small screens. */
+  var lay=[];
+  pxs.forEach(function(el){lay.push({el:el,k:"img",cur:0,tgt:0})});
+  drifts.forEach(function(el){lay.push({el:el,k:"drift",cur:0,tgt:0})});
+  function stag(sel,sp){[].slice.call(document.querySelectorAll(sel)).forEach(function(el,i){el.classList.add("stg");lay.push({el:el,k:"el",sp:sp[i%sp.length],cur:0,tgt:0})})}
+  stag(".edits .edit",[0,.085,.035]);
+  stag(".stock .ph",[.05,-.015,.07,0]);
+  stag(".stories .story",[0,.075,.03]);
+  stag(".social .ph",[.075,.02,.055]);
+  stag(".house-art .inset",[.09]);
+  stag(".tstep .ghost",[.16]);
+  ["house-art .main",".pl .ph",".stories .story:first-child .ph"].forEach(function(q){var el=document.querySelector(q.charAt(0)==="."?q:"."+q);if(el)el.classList.add("sew")});
+  function measure(){
+    var H=innerHeight,small=innerWidth<760;
+    lay.forEach(function(o){
+      var r=o.el.getBoundingClientRect();
+      if(r.bottom<-160||r.top>H+160)return;
+      var c=r.top+r.height/2-H/2;if(o.k!=="img")c-=o.cur;
+      var n=Math.max(-1.2,Math.min(1.2,c/H));
+      if(o.k==="img")o.tgt=-n*r.height*.07;
+      else if(o.k==="drift")o.tgt=-n*90;
+      else o.tgt=small?0:Math.max(-72,Math.min(72,-n*H*o.sp));
     });
   }
+  function apply(){
+    var moving=false;
+    lay.forEach(function(o){
+      var d=o.tgt-o.cur;if(Math.abs(d)<.12){if(o.cur===o.tgt)return;o.cur=o.tgt}else{o.cur+=d*.11;moving=true}
+      o.el.style.setProperty(o.k==="img"?"--py":o.k==="drift"?"--dy":"--sy",o.cur.toFixed(1)+"px");
+    });
+    return moving;
+  }
+  var stamp=document.querySelector(".market .stamp"),rot=0,lastY=scrollY,vel=0,looping=false,mqA=null;
+  function loop(){
+    var y=scrollY;vel+=((y-lastY)-vel)*.18;lastY=y;
+    var m=apply(),sv=false,av=Math.min(Math.abs(vel),70);
+    if(stamp){var r=stamp.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){rot+=.14+av*.07;stamp.style.rotate=rot.toFixed(2)+"deg";sv=true}}
+    if(mqA)mqA.playbackRate=1+av*.07;
+    if(m||sv||Math.abs(vel)>.25)requestAnimationFrame(loop);else{looping=false;if(mqA)mqA.playbackRate=1}
+  }
+  function kick(){if(!looping){looping=true;requestAnimationFrame(loop)}}
+  function pxTick(){
+    var dh=document.documentElement.scrollHeight-innerHeight;if(prog)prog.style.setProperty("--sp",dh>0?(scrollY/dh).toFixed(4):0);
+    if(reduce)return;measure();kick();
+  }
+  /* creds strip as a marquee */
+  var cr=document.querySelector(".creds");
+  if(cr&&!reduce){var ih=cr.innerHTML;cr.innerHTML='<div class="mq-track"><div class="mq-set">'+ih+'</div><div class="mq-set" aria-hidden="true">'+ih+'</div></div>';cr.classList.add("mq");
+    var tr=cr.querySelector(".mq-track");getComputedStyle(tr).animationName;if(tr.getAnimations)mqA=tr.getAnimations()[0]||null;
+    cr.addEventListener("mouseenter",function(){if(mqA)mqA.pause()});cr.addEventListener("mouseleave",function(){if(mqA)mqA.play()});}
+  /* stitch dividers */
+  if(root.classList.contains("js-motion")){var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("sewn");sio.unobserve(e.target)}})},{rootMargin:"0px 0px -15% 0px"});[].slice.call(document.querySelectorAll(".stitch")).forEach(function(el){sio.observe(el)})}
+  /* hero wordmark letters */
+  var wm=document.querySelector(".wordmark");
+  if(wm&&fine){var w=wm.textContent;wm.setAttribute("aria-label",w);wm.innerHTML=w.split("").map(function(ch){return '<span class="wl" aria-hidden="true">'+ch+'</span>'}).join("")}
+  /* magnetic buttons: the button leans toward the pointer and its label leans a little further */
+  if(fine&&!reduce){
+    [].slice.call(document.querySelectorAll(".btn,.cats span,.textlink")).forEach(function(b){
+      if(!b.querySelector(".mg")){var sp=document.createElement("span");sp.className="mg";while(b.firstChild)sp.appendChild(b.firstChild);b.appendChild(sp)}
+      b.classList.add("mag");var st=b.classList.contains("btn")?.3:.22;
+      b.addEventListener("pointermove",function(e){
+        var r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2,cx=function(v,m){return Math.max(-m,Math.min(m,v))};
+        var mx=cx(x*st,12),my=cx(y*st,8);
+        b.style.setProperty("--mx",mx.toFixed(1)+"px");b.style.setProperty("--my",my.toFixed(1)+"px");
+        b.style.setProperty("--lx",(mx*.5).toFixed(1)+"px");b.style.setProperty("--ly",(my*.5).toFixed(1)+"px");
+        b.style.setProperty("--hx",(e.clientX-r.left).toFixed(0)+"px");b.style.setProperty("--hy",(e.clientY-r.top).toFixed(0)+"px");
+      });
+      b.addEventListener("pointerleave",function(){["--mx","--my","--lx","--ly"].forEach(function(k){b.style.setProperty(k,"0px")})});
+    });
+  }
+  /* easter eggs:
+     1. type "varzan" anywhere: a shower of zari sequins
+     2. the Konami code: atelier mode, every photo gets a hand-stitched frame
+     3. click the footer logo five times
+     4. hover the faint 1980 beside the atelier photo; there is a note in the console too */
+  var toastEl=null,toastT;
+  function toast(msg){if(!toastEl){toastEl=document.createElement("div");toastEl.className="egg-toast";toastEl.setAttribute("role","status");document.body.appendChild(toastEl)}
+    toastEl.textContent=msg;requestAnimationFrame(function(){toastEl.classList.add("on")});clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove("on")},4200)}
+  function sequins(){
+    if(reduce)return;
+    var c=document.createElement("canvas"),x=c.getContext("2d");if(!x)return;
+    var dpr=Math.min(devicePixelRatio||1,2),W=innerWidth,H=innerHeight;c.width=W*dpr;c.height=H*dpr;c.className="egg-canvas";c.setAttribute("aria-hidden","true");document.body.appendChild(c);x.scale(dpr,dpr);
+    var cols=["#C9A04F","#E3C27A","#A9822F","#F2DFA8"],P=[];
+    for(var i=0;i<120;i++)P.push({x:Math.random()*W,y:-20-Math.random()*H*.7,r:2+Math.random()*3.4,vy:1.8+Math.random()*2.8,vx:-.5+Math.random(),a:Math.random()*6.28,va:-.12+Math.random()*.24,c:cols[i%4],d:Math.random()<.3});
+    var t0=performance.now();
+    (function f(t){var e=t-t0;x.clearRect(0,0,W,H);x.globalAlpha=e>2700?Math.max(0,1-(e-2700)/700):1;
+      P.forEach(function(p){p.y+=p.vy;p.x+=p.vx+Math.sin((p.y+p.a*40)/60)*.45;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;
+        if(p.d)x.fillRect(-p.r*.8,-p.r*.8,p.r*1.6,p.r*1.6);else{x.scale(1,Math.abs(Math.cos(p.a))+.15);x.beginPath();x.arc(0,0,p.r,0,6.283);x.fill()}x.restore()});
+      if(e<3400)requestAnimationFrame(f);else c.remove()})(t0);
+  }
+  var buf="",kon=[38,38,40,40,37,39,37,39,66,65],ki=0;
+  addEventListener("keydown",function(e){
+    var t=e.target;if(t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA"||t.tagName==="SELECT"||t.isContentEditable))return;
+    if(e.keyCode===kon[ki]){ki++;if(ki===kon.length){ki=0;document.body.classList.add("atelier");toast("Atelier mode: every frame, hand finished");setTimeout(function(){document.body.classList.remove("atelier")},9000)}}else ki=e.keyCode===kon[0]?1:0;
+    if(e.key&&e.key.length===1){buf=(buf+e.key.toLowerCase()).slice(-6);if(buf==="varzan"){buf="";sequins();toast("Every stitch, accounted for")}}
+  });
+  var lg=document.querySelector(".foot .logo"),lc=0,lt;
+  if(lg)lg.addEventListener("click",function(){lc++;clearTimeout(lt);lt=setTimeout(function(){lc=0},1600);if(lc>=5){lc=0;sequins();toast("Since 1980, from Lahore. Thank you for looking this closely")}});
+  try{console.log("%cVARZAN%c\nPremium Eastern wear, made in Lahore since 1980.\nA small secret: type v a r z a n anywhere on the page.\nSite by Mansha Studios.","font:28px serif;letter-spacing:.2em;color:#A9822F","font:12px sans-serif;color:#6E6560;line-height:1.6")}catch(e){}
   var tick0=tick;tick=function(){tick0();sceneTick();threadTick();stackTick();pxTick()};
   function rq(){if(!q){q=true;requestAnimationFrame(tick)}}
   addEventListener("scroll",rq,{passive:true});addEventListener("resize",rq);tick();
