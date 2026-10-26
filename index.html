@@ -52,7 +52,7 @@ img{max-width:100%;display:block}
 .num{font-family:var(--display);font-weight:400;color:var(--zari);font-variant-numeric:lining-nums tabular-nums}
 .stack{display:grid;gap:18px;align-content:start}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font:800 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer;transition:transform .25s ease,background .25s ease,color .25s ease}
-.btn:hover{transform:translateY(-2px)}
+.btn:hover{transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--fg)}
 .btn.ghost:hover{background:var(--fg);color:var(--bg)}
 .btn.gold{background:var(--zari-hi);border-color:var(--zari-hi);color:var(--on-zari)}
@@ -147,7 +147,7 @@ img{max-width:100%;display:block}
 .scene-d .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .scene-d .card .num{font-size:34px;line-height:1}
 .scene-d .card p{font-size:14px;line-height:1.55;color:var(--muted)}
-.scene-d .rail{position:absolute;left:var(--gut);top:50%;transform:translateY(-50%);z-index:2;display:grid;gap:14px}
+.scene-d .rail{position:absolute;left:var(--gut);bottom:30px;z-index:2;display:flex;align-items:center;gap:10px}
 .scene-d .rail i{display:block;width:34px;height:1px;background:var(--band-muted);opacity:.5;transition:width .4s,opacity .4s,background .4s}
 .scene-d .rail i.on{width:64px;opacity:1;background:var(--zari-hi)}
 .scene-d .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--zari-hi);width:0;z-index:3}
@@ -433,7 +433,7 @@ img{max-width:100%;display:block}
 /* magnetic buttons, with a soft light that follows the pointer */
 .btn.mag{transition:translate .5s cubic-bezier(.2,.8,.2,1),transform .25s ease,background .25s ease,color .25s ease;translate:var(--mx,0px) var(--my,0px);overflow:hidden;isolation:isolate}
 .btn.mag:not(.float){position:relative}
-.btn.mag::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(140px circle at var(--hx,50%) var(--hy,50%),rgba(255,255,255,.24),transparent 62%);opacity:0;transition:opacity .35s}
+.btn.mag::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(140px circle at var(--hx,50%) var(--hy,50%),rgba(255,255,255,.1),transparent 65%);opacity:0;transition:opacity .35s}
 .btn.mag:hover::before{opacity:1}
 .mag:not(.btn){display:inline-block;transition:translate .5s cubic-bezier(.2,.8,.2,1),background .3s,color .3s,border-color .3s;translate:var(--mx,0px) var(--my,0px)}
 .mag .mg{display:inline-block;translate:var(--lx,0px) var(--ly,0px);transition:translate .45s cubic-bezier(.2,.8,.2,1)}
@@ -636,14 +636,14 @@ img{max-width:100%;display:block}
   <div class="wrap">
     <div class="sp-head"><div class="stack" style="gap:14px"><p class="eyebrow">The Process</p><h2 class="h2">From sketch to dispatch</h2></div></div>
     <div class="thread" id="thread"><svg class="tline" aria-hidden="true"><path class="guide" id="tguide" d=""/><path class="gold" id="tgold" d=""/></svg>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">01</span><div class="side"><div class="ph" data-shot="Fashion illustration on paper" data-img="p1" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Sketch</span><span class="num">01</span></div><h3 class="h3">Every piece begins with intent.</h3><p>The process starts with a fashion illustration that defines the silhouette, proportions, embellishment language and overall direction of the design.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">02</span><div class="side"><div class="ph" data-shot="Fabric bolts: net, organza, raw silk, tissue" data-img="p2" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Fabric</span><span class="num">02</span></div><h3 class="h3">The right foundation matters.</h3><p>Each design is paired with carefully selected materials including net, organza, raw silk, tissue and other premium fabrics chosen for drape, structure and finish.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">03</span><div class="side"><div class="ph" data-shot="Dye vats or colour swatches" data-img="p3" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Colour</span><span class="num">03</span></div><h3 class="h3">Colour, developed with purpose.</h3><p>Fabrics are dyed according to the collection palette, ensuring richness, consistency and harmony across the finished garment.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">04</span><div class="side"><div class="ph" data-shot="Artisans at the adda frame" data-img="p4" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Adda work</span><span class="num">04</span></div><h3 class="h3">Crafted by hand.</h3><p>Fabric is stretched onto traditional wooden frames where skilled artisans build the surface through threadwork, beads, pearls, sequins and detailed embellishment.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">05</span><div class="side"><div class="ph" data-shot="Pattern cutting table" data-img="p5" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Pattern</span><span class="num">05</span></div><h3 class="h3">Precision before assembly.</h3><p>Patterns are developed to translate the design into proportion, structure and fit before the garment moves into construction.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">06</span><div class="side"><div class="ph" data-shot="Tailor at the machine" data-img="p6" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Stitching</span><span class="num">06</span></div><h3 class="h3">Where the piece takes form.</h3><p>The embroidered fabric is cut and assembled by experienced tailors, bringing together silhouette, structure and craftsmanship.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">07</span><div class="side"><div class="ph" data-shot="Inspection and steam finishing" data-img="p7" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>The final check</span><span class="num">07</span></div><h3 class="h3">Nothing leaves unchecked.</h3><p>Finishing details, trims, closures and embellishments are reviewed before the garment undergoes final inspection, neatening and steam finishing.</p></div></div></div>
-      <div class="tstep"><span class="node" aria-hidden="true"></span><span class="ghost" aria-hidden="true">08</span><div class="side"><div class="ph" data-shot="Packed Varzan box" data-img="p8" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Dispatch</span><span class="num">08</span></div><h3 class="h3">Ready for its next market.</h3><p>Approved pieces are carefully packed and prepared for delivery to wholesale partners locally and internationally.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Fashion illustration on paper" data-img="p1" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Sketch</span><span class="num">01</span></div><h3 class="h3">Every piece begins with intent.</h3><p>The process starts with a fashion illustration that defines the silhouette, proportions, embellishment language and overall direction of the design.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Fabric bolts: net, organza, raw silk, tissue" data-img="p2" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Fabric</span><span class="num">02</span></div><h3 class="h3">The right foundation matters.</h3><p>Each design is paired with carefully selected materials including net, organza, raw silk, tissue and other premium fabrics chosen for drape, structure and finish.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Dye vats or colour swatches" data-img="p3" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Colour</span><span class="num">03</span></div><h3 class="h3">Colour, developed with purpose.</h3><p>Fabrics are dyed according to the collection palette, ensuring richness, consistency and harmony across the finished garment.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Artisans at the adda frame" data-img="p4" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Adda work</span><span class="num">04</span></div><h3 class="h3">Crafted by hand.</h3><p>Fabric is stretched onto traditional wooden frames where skilled artisans build the surface through threadwork, beads, pearls, sequins and detailed embellishment.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Pattern cutting table" data-img="p5" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Pattern</span><span class="num">05</span></div><h3 class="h3">Precision before assembly.</h3><p>Patterns are developed to translate the design into proportion, structure and fit before the garment moves into construction.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Tailor at the machine" data-img="p6" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Stitching</span><span class="num">06</span></div><h3 class="h3">Where the piece takes form.</h3><p>The embroidered fabric is cut and assembled by experienced tailors, bringing together silhouette, structure and craftsmanship.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Inspection and steam finishing" data-img="p7" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>The final check</span><span class="num">07</span></div><h3 class="h3">Nothing leaves unchecked.</h3><p>Finishing details, trims, closures and embellishments are reviewed before the garment undergoes final inspection, neatening and steam finishing.</p></div></div></div>
+      <div class="tstep"><span class="node" aria-hidden="true"></span><div class="side"><div class="ph" data-shot="Packed Varzan box" data-img="p8" style="background:#E9E3DA center/cover no-repeat"></div><div class="txt"><div class="top"><span>Dispatch</span><span class="num">08</span></div><h3 class="h3">Ready for its next market.</h3><p>Approved pieces are carefully packed and prepared for delivery to wholesale partners locally and internationally.</p></div></div></div>
     </div>
     <div class="tcount"><span>Stages complete</span><b id="tdone">00 / 08</b></div>
   </div>
@@ -1007,7 +1007,6 @@ img{max-width:100%;display:block}
   stag(".stories .story",[0,.075,.03]);
   stag(".social .ph",[.075,.02,.055]);
   stag(".house-art .inset",[.09]);
-  stag(".tstep .ghost",[.16]);
   ["house-art .main",".pl .ph",".stories .story:first-child .ph"].forEach(function(q){var el=document.querySelector(q.charAt(0)==="."?q:"."+q);if(el)el.classList.add("sew")});
   function measure(){
     var H=innerHeight,small=innerWidth<760;
@@ -1059,9 +1058,9 @@ img{max-width:100%;display:block}
       b.classList.add("mag");var st=b.classList.contains("btn")?.3:.22;
       b.addEventListener("pointermove",function(e){
         var r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2,cx=function(v,m){return Math.max(-m,Math.min(m,v))};
-        var mx=cx(x*st,12),my=cx(y*st,8);
+        var mx=cx(x*st*.35,4),my=cx(y*st*.35,3);
         b.style.setProperty("--mx",mx.toFixed(1)+"px");b.style.setProperty("--my",my.toFixed(1)+"px");
-        b.style.setProperty("--lx",(mx*.5).toFixed(1)+"px");b.style.setProperty("--ly",(my*.5).toFixed(1)+"px");
+        b.style.setProperty("--lx",(mx*.4).toFixed(1)+"px");b.style.setProperty("--ly",(my*.4).toFixed(1)+"px");
         b.style.setProperty("--hx",(e.clientX-r.left).toFixed(0)+"px");b.style.setProperty("--hy",(e.clientY-r.top).toFixed(0)+"px");
       });
       b.addEventListener("pointerleave",function(){["--mx","--my","--lx","--ly"].forEach(function(k){b.style.setProperty(k,"0px")})});
