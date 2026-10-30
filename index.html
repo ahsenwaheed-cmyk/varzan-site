@@ -1125,7 +1125,7 @@ img{max-width:100%;display:block}
 
 <script>
 (function(){var els=[].slice.call(document.querySelectorAll("[data-img]"));
-function show(el){if(el.dataset.done)return;el.dataset.done=1;var u="url(img/"+el.dataset.img+".webp?v=2)";if(el.classList.contains("px"))el.style.setProperty("--bg",u);else el.style.backgroundImage=u}
+function show(el){if(el.dataset.done)return;el.dataset.done=1;var u="url(img/"+el.dataset.img+".webp?v=3)";if(el.classList.contains("px"))el.style.setProperty("--bg",u);else el.style.backgroundImage=u}
 if(!("IntersectionObserver" in window)){els.forEach(show);return}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target)}})},{rootMargin:"150% 0px 150% 0px"});
 els.forEach(function(el){io.observe(el)});
