@@ -850,6 +850,7 @@ img{max-width:100%;display:block}
      into playing while muted and pause it straight away. Seeks then render as you scroll. */
   function prime(v){
     v.addEventListener("loadeddata",rq);
+    if(!v._eh){v._eh=1;v.addEventListener("error",function(){if(v.src.indexOf("blob:")===0&&v.dataset.src){v._blob=null;v.src=v.dataset.src;prime(v)}})}
     if(!v._sk){v._sk=1;v.addEventListener("seeked",function(){if(v._want!=null){var w=v._want;v._want=null;seek(v,w)}rq()})}
     var go=function(){var pr=v.play();if(pr&&pr.then)pr.then(function(){v.pause();v.currentTime=v.currentTime;rq()},function(){});else{try{v.pause()}catch(e){}}};
     if(v.readyState>0)go();else v.addEventListener("loadedmetadata",go,{once:true});
@@ -876,9 +877,17 @@ img{max-width:100%;display:block}
      background. A film held in memory seeks instantly at any point, so the explorer keeps
      moving all the way to card 04 even on a slow line. */
   var preq=[].slice.call(document.querySelectorAll("video[data-src]")),preOn=false;
+  /* Safari and every iPhone browser (all WebKit) show a black frame for a film played from
+     memory, so there the films stream from their files instead: each one starts loading as
+     soon as the one before it can play through. */
+  var ua=navigator.userAgent,wk=/iP(hone|ad|od)/.test(ua)||(/Safari\//.test(ua)&&!/Chrome|Chromium|CriOS|Edg|OPR|Android/.test(ua));
   function pre(){
-    var v=preq.shift();if(!v||!window.fetch||!window.URL)return;
+    var v=preq.shift();if(!v)return;
     if(v.src){pre();return}
+    if(wk||!window.fetch||!window.URL){
+      v.src=v.dataset.src;prime(v);var nx=false,go=function(){if(!nx){nx=true;pre()}};
+      v.addEventListener("canplaythrough",go,{once:true});setTimeout(go,9000);return;
+    }
     v._fetching=1;v._got=0;v._ac=window.AbortController?new AbortController():null;
     fetch(v.dataset.src,v._ac?{signal:v._ac.signal}:{}).then(function(r){
       if(!r.ok)throw 0;
